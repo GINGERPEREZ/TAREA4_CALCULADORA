@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones Aritméticas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Operaciones Aritméticas</h1>
+        <label for="num1">Número 1:</label>
+        <input type="number" id="num1" placeholder="Ingrese el primer número">
+        
+        <label for="num2">Número 2:</label>
+        <input type="number" id="num2" placeholder="Ingrese el segundo número">
+        
+        <button onclick="realizarOperaciones()">Calcular</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function realizarOperaciones() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                alert('Por favor, ingrese dos números válidos.');
+                return;
+            }
+
+            const results = document.getElementById('results');
+            results.innerHTML = ''; // Limpiar resultados previos
+
+            for (let i = 1; i <= 5; i++) {
+                let result;
+                let operation;
+                
+                switch (i) {
+                    case 1:
+                        result = num1 + num2;
+                        operation = 'Suma';
+                        break;
+                    case 2:
+                        result = num1 - num2;
+                        operation = 'Resta';
+                        break;
+                    case 3:
+                        result = num1 * num2;
+                        operation = 'Multiplicación';
+                        break;
+                    case 4:
+                        if (num2 === 0) {
+                            result = 'Error: División por cero';
+                        } else {
+                            result = num1 / num2;
+                        }
+                        operation = 'División';
+                        break;
+                    case 5:
+                        if (num2 === 0) {
+                            result = 'Error: Módulo por cero';
+                        } else {
+                            result = num1 % num2;
+                        }
+                        operation = 'Módulo';
+                        break;
+                }
+
+                results.innerHTML += `<p>${operation} = ${result}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
